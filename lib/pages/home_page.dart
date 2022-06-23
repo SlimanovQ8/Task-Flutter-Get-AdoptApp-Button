@@ -14,7 +14,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Pet Adopt"),
@@ -102,12 +104,18 @@ class _HomePageState extends State<HomePage> {
               builder: (context, ss) {
                 List<Pet> pets = Provider.of<PetsProvider>(context, listen: false).pets;
 
+                print(pets.length);
                 if(ss.connectionState == ConnectionState.waiting)
                   return Center(
                     child: CircularProgressIndicator(),
                   );
                 else
-                  return GridView.builder(
+                  {
+                    pets =  Provider.of<PetsProvider>(context, listen: false).pets;
+
+                    print(pets.length);
+
+                    return GridView.builder(
                       shrinkWrap: true,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
@@ -118,7 +126,7 @@ class _HomePageState extends State<HomePage> {
                       itemCount: pets.length,
                       itemBuilder: (context, index) => PetCard(pet: pets[index]));
 
-              }
+              }}
               ),
 
           ],

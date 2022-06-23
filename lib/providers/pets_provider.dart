@@ -9,6 +9,7 @@ class PetsProvider extends ChangeNotifier {
   {
     DioClient DC = DioClient();
     pets = await DC.getPets() ;
+    notifyListeners();
   }
 
   void addPets(String name, int age, String gender) async
